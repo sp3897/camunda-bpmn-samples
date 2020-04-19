@@ -15,5 +15,5 @@ camunda:
     admin-user:
       id: spuranam
       password: spuranam
-server:
-   port : 9000
+#server:
+#   port : 9000

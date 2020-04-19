@@ -37,6 +37,12 @@
             <artifactId>camunda-bpm-spring-boot-starter-webapp-ee</artifactId>
             <version>${camunda.spring.boot.starter.version}</version>
         </dependency>
+        <!--Add this to enable rest endpoints -->
+        <dependency>
+            <groupId>org.camunda.bpm.springboot</groupId>
+            <artifactId>camunda-bpm-spring-boot-starter-rest</artifactId>
+            <version>${camunda.spring.boot.starter.version}</version>
+        </dependency>
 <!--        <dependency>-->
 <!--            <groupId>com.h2database</groupId>-->
 <!--            <artifactId>h2</artifactId>-->
