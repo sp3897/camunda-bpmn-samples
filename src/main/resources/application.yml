@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/camunda?useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: "root"
+    password: ""
+camunda:
+  bpm:
+    database:
+      type: mysql
+    filter:
+      create: All
+    job-execution:
+      core-pool-size: 10
+    admin-user:
+      id: spuranam
+      password: spuranam
+server:
+   port : 9000
