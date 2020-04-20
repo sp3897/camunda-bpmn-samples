@@ -4,16 +4,6 @@
     <bpmn:participant id="Participant_0g9050t" name="Echo Server" processRef="Process_1htxna8" />
   </bpmn:collaboration>
   <bpmn:process id="Process_1htxna8" isExecutable="true">
-    <bpmn:task id="EchoServer" name="Echo Message">
-      <bpmn:extensionElements>
-        <camunda:inputOutput>
-          <camunda:inputParameter name="Message">Hello</camunda:inputParameter>
-          <camunda:outputParameter name="Output_Msg" />
-        </camunda:inputOutput>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_17mn013</bpmn:incoming>
-      <bpmn:outgoing>Flow_1e6gi23</bpmn:outgoing>
-    </bpmn:task>
     <bpmn:startEvent id="StartEvent_1" name="Start">
       <bpmn:outgoing>Flow_17mn013</bpmn:outgoing>
     </bpmn:startEvent>
@@ -23,23 +13,31 @@
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_17mn013" sourceRef="StartEvent_1" targetRef="EchoServer" />
     <bpmn:sequenceFlow id="Flow_1e6gi23" sourceRef="EchoServer" targetRef="Event_0akensg" />
+    <bpmn:serviceTask id="EchoServer" name="Echo Message" camunda:class="com.puranam.bpm.service.delegate.EchoDelegate">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="echoMessage">Hello</camunda:inputParameter>
+          <camunda:outputParameter name="Output_Msg" />
+        </camunda:inputOutput>
+        <camunda:executionListener class="com.puranam.bpm.service.delegate.EchoDelegate" event="start" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_17mn013</bpmn:incoming>
+      <bpmn:outgoing>Flow_1e6gi23</bpmn:outgoing>
+    </bpmn:serviceTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_01cekpw">
       <bpmndi:BPMNShape id="Participant_0g9050t_di" bpmnElement="Participant_0g9050t" isHorizontal="true">
         <dc:Bounds x="130" y="80" width="350" height="190" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Flow_17mn013_di" bpmnElement="Flow_17mn013">
-        <di:waypoint x="216" y="180" />
-        <di:waypoint x="278" y="180" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1e6gi23_di" bpmnElement="Flow_1e6gi23">
         <di:waypoint x="378" y="180" />
         <di:waypoint x="422" y="180" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Activity_0xja63j_di" bpmnElement="EchoServer">
-        <dc:Bounds x="278" y="140" width="100" height="80" />
-      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_17mn013_di" bpmnElement="Flow_17mn013">
+        <di:waypoint x="216" y="180" />
+        <di:waypoint x="278" y="180" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Event_0vpdf59_di" bpmnElement="StartEvent_1">
         <dc:Bounds x="180" y="162" width="36" height="36" />
         <bpmndi:BPMNLabel>
@@ -51,6 +49,9 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="430" y="205" width="20" height="14" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1skfl06_di" bpmnElement="EchoServer">
+        <dc:Bounds x="278" y="140" width="100" height="80" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
